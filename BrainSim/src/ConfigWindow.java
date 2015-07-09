@@ -144,7 +144,7 @@ public class ConfigWindow extends JFrame {
 		contentPane.add(lblEruptionProbability);
 		
 		eruptionPropabilitySpinner = new JSpinner();
-		eruptionPropabilitySpinner.setModel(new SpinnerNumberModel(new Float(0.002), new Float(0), new Float(2), new Float(1)));
+		eruptionPropabilitySpinner.setModel(new SpinnerNumberModel(new Float(0.001), new Float(0), new Float(2), new Float(0)));
 		eruptionPropabilitySpinner.setBounds(119, 147, 147, 14);
 		contentPane.add(eruptionPropabilitySpinner);
 		
@@ -320,17 +320,26 @@ public class ConfigWindow extends JFrame {
 		button_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int sqrt = (int)Math.sqrt( brain.getNeurocells().size() );
+				
+				// get rid of rest
+				int tmp = sqrt * sqrt;
+				while(brain.getNeurocells().size() != tmp) {
+					brain.getNeurocells().remove(tmp);
+				}
+				
+				spinner.setValue( tmp );
+				
 				int counter = 0;
 				for(int i = 0; i < sqrt; i++) {
 					for(int k = 0; k < sqrt; k++) {
-						brain.getNeurocells().get(counter).setX(i * brain.getWidth() / sqrt);
-						brain.getNeurocells().get(counter).setY(k * brain.getHeight() / sqrt);
+						brain.getNeurocells().get(counter).setX(i * (int)neurocellsizeSpinner.getValue());
+						brain.getNeurocells().get(counter).setY(k * (int)neurocellsizeSpinner.getValue());
 						counter++;
 					}
 				}
 			}
 		});
-		button_9.setBounds(119, 113, 147, 15);
+		button_9.setBounds(119, 109, 147, 15);
 		contentPane.add(button_9);
 		
 		JCheckBox checkBox = new JCheckBox("draw rectangles");
@@ -343,5 +352,16 @@ public class ConfigWindow extends JFrame {
 		});
 		checkBox.setBounds(10, 109, 110, 23);
 		contentPane.add(checkBox);
+		
+		JButton button_8 = new JButton("reset simulation");
+		button_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				for(int i = 0; i < brain.getNeurocells().size(); i++) {
+					brain.getNeurocells().get(i).setOutput(0.0f);
+				}
+			}
+		});
+		button_8.setBounds(276, 109, 147, 15);
+		contentPane.add(button_8);
 	}
 }
