@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class NeuroCell {
 
@@ -10,18 +11,24 @@ public class NeuroCell {
 	private float threshold;
 	private int cooldown;
 	private int cooldownCounter;
+	private float eruptionPropability;
+	private float eruptionOutput;
+	private Random ran;
 	private int x;
 	private int y;
 	private int size;
 	private Color color;
 	private Color colorTriggered;
 
-	public NeuroCell(float threshold, int cooldown, int x, int y, int size, Color color, Color colorTriggered) {
+	public NeuroCell(float threshold, int cooldown, float eruptionPropability, float eruptionOutput, int x, int y, int size, Color color, Color colorTriggered) {
 		super();
 		inputs = new ArrayList<NeuroCell>();
 		this.threshold = threshold;
 		this.cooldown = cooldown;
 		this.cooldownCounter = 0;
+		this.eruptionPropability = eruptionPropability;
+		this.eruptionOutput = eruptionOutput;
+		this.ran = new Random();
 		this.x = x;
 		this.y = y;
 		this.size = size;
@@ -37,7 +44,6 @@ public class NeuroCell {
 			output = futureOutput;
 			outputTriggered = false;
 			cooldownCounter = 1;
-			System.out.println(output);
 		} else if( cooldownCounter != 0) {
 			cooldownCounter++;
 			if(cooldownCounter == cooldown) {
@@ -54,10 +60,13 @@ public class NeuroCell {
 		for (int i = 0; i < inputs.size(); i++) {
 			sum += inputs.get(i).output;
 		}
-
-		if (sum >= threshold) {
+		
+		if (sum >= threshold){
 			sum /= (float) inputs.size();
 			futureOutput = sum;
+			outputTriggered = true;
+		} else if( ran.nextFloat() <= eruptionPropability ) {
+			futureOutput = eruptionOutput;
 			outputTriggered = true;
 		}
 	}
@@ -140,5 +149,29 @@ public class NeuroCell {
 
 	public void setColorTriggered(Color colorTriggered) {
 		this.colorTriggered = colorTriggered;
+	}
+
+	public int getCooldown() {
+		return cooldown;
+	}
+
+	public void setCooldown(int cooldown) {
+		this.cooldown = cooldown;
+	}
+
+	public float getEruptionPropability() {
+		return eruptionPropability;
+	}
+
+	public void setEruptionPropability(float eruptionPropability) {
+		this.eruptionPropability = eruptionPropability;
+	}
+
+	public float getEruptionOutput() {
+		return eruptionOutput;
+	}
+
+	public void setEruptionOutput(float eruptionOutput) {
+		this.eruptionOutput = eruptionOutput;
 	}
 }

@@ -8,7 +8,7 @@ public class Stimulus extends NeuroCell {
 	private float[] buffer;
 	
 	public Stimulus( int filterBufferSize, int x, int y, int size, Color color) {
-		super(0.0f, 0, x, y, size, color, null);
+		super(0.0f, 0, 0.0f, 0.0f, x, y, size, color, null);
 		ran = new Random();
 		buffer = new float[filterBufferSize];
 		
