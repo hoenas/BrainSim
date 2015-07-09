@@ -48,11 +48,11 @@ public class Main extends JFrame {
 		
 		
 		
-		Brain brain = new Brain(Color.white, Color.cyan, 200, true);
+		Brain brain = new Brain(Color.white, Color.cyan, 200, false);
 		contentPane.add(brain, BorderLayout.CENTER);
 		
 		// Timerkonfiguration
-		simTimer = new Timer(160, new ActionListener() {
+		simTimer = new Timer(16, new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {

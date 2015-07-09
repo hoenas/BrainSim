@@ -47,8 +47,9 @@ public class NeuroCell {
 		} else if( cooldownCounter != 0) {
 			if(cooldownCounter == cooldown) {
 				cooldownCounter = 0;
+			} else {
+				cooldownCounter++;
 			}
-			cooldownCounter++;
 		} else {
 			output = 0.0f;
 		}

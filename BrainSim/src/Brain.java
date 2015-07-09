@@ -28,7 +28,7 @@ public class Brain extends Canvas{
 		this.linkColor = linkColor;
 		this.linkRadius = linkRadius;
 		this.drawLinkLines = drawLinkLines;
-		this.drawRectangles = false;
+		this.drawRectangles = true;
 		bufferstrategy = null;
 		
 		Random ran = new Random();

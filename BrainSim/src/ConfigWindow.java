@@ -24,6 +24,7 @@ import java.util.Random;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import javax.swing.JComboBox;
 
 
 public class ConfigWindow extends JFrame {
@@ -48,7 +49,7 @@ public class ConfigWindow extends JFrame {
 		this.simTimer = simTimer;
 		this.ran = new Random(1);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 477, 338);
+		setBounds(100, 100, 477, 381);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -102,14 +103,13 @@ public class ConfigWindow extends JFrame {
 			public void propertyChange(PropertyChangeEvent arg0) {
 			}
 		});
-		slider.setMaximum(10000);
+		slider.setMaximum(1000);
 		slider.setMinimum(16);
 		slider.setValue(16);
 		slider.setBounds(119, 36, 234, 14);
 		contentPane.add(slider);
 		
 		JCheckBox chckbxDrawLinkLines = new JCheckBox("draw link lines");
-		chckbxDrawLinkLines.setSelected(true);
 		chckbxDrawLinkLines.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -124,7 +124,7 @@ public class ConfigWindow extends JFrame {
 		contentPane.add(lblAddNeurocells);
 		
 		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		spinner.setModel(new SpinnerNumberModel(new Integer(16000), new Integer(1), null, new Integer(1)));
 		spinner.setBounds(119, 62, 147, 14);
 		contentPane.add(spinner);
 		
@@ -132,7 +132,7 @@ public class ConfigWindow extends JFrame {
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				for(int i = 0; i < (int) spinner.getValue(); i++) {
-					brain.getNeurocells().add(new NeuroCell((float)thresholdSpinner.getValue(), (int)cooldownSpinner.getValue(), (float)eruptionPropabilitySpinner.getValue(), (float)eruptionOutputSpinner.getValue(), (int)(ran.nextFloat() * brain.getWidth()), (int)(ran.nextFloat() * brain.getHeight()), (int)neurocellsizeSpinner.getValue(), Color.red, Color.green));				
+					brain.getNeurocells().add(new NeuroCell((float)thresholdSpinner.getValue(), (int)cooldownSpinner.getValue(), (float)eruptionPropabilitySpinner.getValue(), (float)eruptionOutputSpinner.getValue(), (int)(ran.nextFloat() * brain.getWidth()), (int)(ran.nextFloat() * brain.getHeight()), (int)neurocellsizeSpinner.getValue(), Color.gray, Color.magenta));				
 				}
 			}
 		});
@@ -164,7 +164,7 @@ public class ConfigWindow extends JFrame {
 		contentPane.add(lblThreshold);
 		
 		thresholdSpinner = new JSpinner();
-		thresholdSpinner.setModel(new SpinnerNumberModel(new Float(0.2), null, null, new Float(1)));
+		thresholdSpinner.setModel(new SpinnerNumberModel(new Float(4.0f), null, null, new Float(1)));
 		thresholdSpinner.setBounds(119, 198, 147, 14);
 		contentPane.add(thresholdSpinner);
 		
@@ -201,7 +201,7 @@ public class ConfigWindow extends JFrame {
 		contentPane.add(button_2);
 		
 		linkDistanceSpinner = new JSpinner();
-		linkDistanceSpinner.setModel(new SpinnerNumberModel(new Double(200), new Double(0), null, new Double(1)));
+		linkDistanceSpinner.setModel(new SpinnerNumberModel(new Double(10), new Double(0), null, new Double(1)));
 		linkDistanceSpinner.setBounds(119, 249, 147, 14);
 		contentPane.add(linkDistanceSpinner);
 		
@@ -221,7 +221,7 @@ public class ConfigWindow extends JFrame {
 		contentPane.add(button_3);
 		
 		cooldownSpinner = new JSpinner();
-		cooldownSpinner.setModel(new SpinnerNumberModel(new Integer(5), new Integer(0), null, new Integer(1)));
+		cooldownSpinner.setModel(new SpinnerNumberModel(new Integer(20), new Integer(0), null, new Integer(1)));
 		cooldownSpinner.setBounds(119, 223, 147, 14);
 		contentPane.add(cooldownSpinner);
 		
@@ -234,7 +234,7 @@ public class ConfigWindow extends JFrame {
 		contentPane.add(label_1);
 		
 		neurocellsizeSpinner = new JSpinner();
-		neurocellsizeSpinner.setModel(new SpinnerNumberModel(10, 1, 100, 1));
+		neurocellsizeSpinner.setModel(new SpinnerNumberModel(4, 1, 100, 1));
 		neurocellsizeSpinner.setBounds(119, 275, 147, 14);
 		contentPane.add(neurocellsizeSpinner);
 		
@@ -250,7 +250,7 @@ public class ConfigWindow extends JFrame {
 		contentPane.add(button_4);
 		
 		eruptionOutputSpinner = new JSpinner();
-		eruptionOutputSpinner.setModel(new SpinnerNumberModel(new Float(0.05f), null, null, new Float(1)));
+		eruptionOutputSpinner.setModel(new SpinnerNumberModel(new Float(1.0f), null, null, new Float(1)));
 		eruptionOutputSpinner.setBounds(119, 172, 147, 14);
 		contentPane.add(eruptionOutputSpinner);
 		
@@ -334,6 +334,7 @@ public class ConfigWindow extends JFrame {
 		contentPane.add(button_9);
 		
 		JCheckBox checkBox = new JCheckBox("draw rectangles");
+		checkBox.setSelected(true);
 		checkBox.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
