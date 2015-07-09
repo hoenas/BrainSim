@@ -124,7 +124,7 @@ public class ConfigWindow extends JFrame {
 		contentPane.add(lblAddNeurocells);
 		
 		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(new Integer(16000), new Integer(1), null, new Integer(1)));
+		spinner.setModel(new SpinnerNumberModel(new Integer(25600), new Integer(1), null, new Integer(1)));
 		spinner.setBounds(119, 62, 147, 14);
 		contentPane.add(spinner);
 		
@@ -201,7 +201,7 @@ public class ConfigWindow extends JFrame {
 		contentPane.add(button_2);
 		
 		linkDistanceSpinner = new JSpinner();
-		linkDistanceSpinner.setModel(new SpinnerNumberModel(new Double(10), new Double(0), null, new Double(1)));
+		linkDistanceSpinner.setModel(new SpinnerNumberModel(new Double(8), new Double(0), null, new Double(1)));
 		linkDistanceSpinner.setBounds(119, 249, 147, 14);
 		contentPane.add(linkDistanceSpinner);
 		
@@ -221,7 +221,7 @@ public class ConfigWindow extends JFrame {
 		contentPane.add(button_3);
 		
 		cooldownSpinner = new JSpinner();
-		cooldownSpinner.setModel(new SpinnerNumberModel(new Integer(20), new Integer(0), null, new Integer(1)));
+		cooldownSpinner.setModel(new SpinnerNumberModel(new Integer(22), new Integer(0), null, new Integer(1)));
 		cooldownSpinner.setBounds(119, 223, 147, 14);
 		contentPane.add(cooldownSpinner);
 		
