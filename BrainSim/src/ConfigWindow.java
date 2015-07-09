@@ -164,7 +164,7 @@ public class ConfigWindow extends JFrame {
 		contentPane.add(lblThreshold);
 		
 		thresholdSpinner = new JSpinner();
-		thresholdSpinner.setModel(new SpinnerNumberModel(new Float(4.0f), null, null, new Float(1)));
+		thresholdSpinner.setModel(new SpinnerNumberModel(new Float(5), null, null, new Float(1)));
 		thresholdSpinner.setBounds(119, 198, 147, 14);
 		contentPane.add(thresholdSpinner);
 		
@@ -201,7 +201,7 @@ public class ConfigWindow extends JFrame {
 		contentPane.add(button_2);
 		
 		linkDistanceSpinner = new JSpinner();
-		linkDistanceSpinner.setModel(new SpinnerNumberModel(new Double(8), new Double(0), null, new Double(1)));
+		linkDistanceSpinner.setModel(new SpinnerNumberModel(new Double(9), new Double(0), null, new Double(1)));
 		linkDistanceSpinner.setBounds(119, 249, 147, 14);
 		contentPane.add(linkDistanceSpinner);
 		
