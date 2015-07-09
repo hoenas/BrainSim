@@ -132,7 +132,7 @@ public class ConfigWindow extends JFrame {
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				for(int i = 0; i < (int) spinner.getValue(); i++) {
-					brain.addNeurocell(new NeuroCell((float)thresholdSpinner.getValue(), (int)cooldownSpinner.getValue(), (float)eruptionPropabilitySpinner.getValue(), (float)eruptionOutputSpinner.getValue(), (int)(ran.nextFloat() * brain.getWidth()), (int)(ran.nextFloat() * brain.getHeight()), (int)neurocellsizeSpinner.getValue(), Color.red, Color.green));				
+					brain.getNeurocells().add(new NeuroCell((float)thresholdSpinner.getValue(), (int)cooldownSpinner.getValue(), (float)eruptionPropabilitySpinner.getValue(), (float)eruptionOutputSpinner.getValue(), (int)(ran.nextFloat() * brain.getWidth()), (int)(ran.nextFloat() * brain.getHeight()), (int)neurocellsizeSpinner.getValue(), Color.red, Color.green));				
 				}
 			}
 		});
@@ -295,8 +295,8 @@ public class ConfigWindow extends JFrame {
 		button_7.setBounds(119, 83, 147, 15);
 		contentPane.add(button_7);
 		
-		JButton button_8 = new JButton("recalculate links");
-		button_8.addActionListener(new ActionListener() {
+		JButton btnCalculateLinks = new JButton("calculate links");
+		btnCalculateLinks.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// destroy links
 				ArrayList<NeuroCell> tmpList = new ArrayList<NeuroCell>();
@@ -313,8 +313,8 @@ public class ConfigWindow extends JFrame {
 				}
 			}
 		});
-		button_8.setBounds(276, 83, 147, 15);
-		contentPane.add(button_8);
+		btnCalculateLinks.setBounds(276, 83, 147, 15);
+		contentPane.add(btnCalculateLinks);
 		
 		JButton button_9 = new JButton("square positions");
 		button_9.addActionListener(new ActionListener() {

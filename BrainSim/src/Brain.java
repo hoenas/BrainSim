@@ -4,10 +4,14 @@ import java.awt.BasicStroke;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.geom.Arc2D;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 import java.util.Random;
+
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
 public class Brain extends Canvas{
 	private java.util.List<NeuroCell> neurocells = new ArrayList<NeuroCell>();
@@ -99,7 +103,6 @@ public class Brain extends Canvas{
 				} else {
 					g2.fillRect( neurocell.getX(), neurocell.getY(), neurocell.getSize(), neurocell.getSize());
 				}
-				
 			}
 			
 			bufferstrategy.show();
@@ -113,14 +116,17 @@ public class Brain extends Canvas{
 	
 	public void addNeurocell( NeuroCell neurocell ) {
 		// add neurocell
-		neurocells.add(neurocell);
+		neurocells.add(neurocell);		
 		
 		// calculate links
 		for(int i = 0; i < neurocells.size()-1; i++) {
-			double distance = Math.sqrt( Math.pow( neurocell.getX() - neurocells.get(i).getX(), 2 ) + Math.pow( neurocell.getY() - neurocells.get(i).getY(), 2 ) );
-			if(distance <= linkRadius) {
-				neurocell.addInput(neurocells.get(i));
-				neurocells.get(i).addInput(neurocell);
+			// calculate if in rectangle first
+			if( neurocell.getX() - neurocells.get(i).getX() <= linkRadius && neurocell.getY() - neurocells.get(i).getY() <= linkRadius ) {
+				double distance = Math.sqrt( Math.pow( neurocell.getX() - neurocells.get(i).getX(), 2 ) + Math.pow( neurocell.getY() - neurocells.get(i).getY(), 2 ) );
+				if(distance <= linkRadius) {
+					neurocell.addInput(neurocells.get(i));
+					neurocells.get(i).addInput(neurocell);
+				}
 			}
 		}
 	}
