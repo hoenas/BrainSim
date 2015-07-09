@@ -15,6 +15,7 @@ public class Brain extends Canvas{
 	private Color linkColor;
 	private double linkRadius;
 	private boolean drawLinkLines;
+	private boolean drawRectangles;
 	private BufferStrategy bufferstrategy;
 	
 	//public Brain( Color backgroundColor, Color linkColor, int numberOfNeurocells, int numberOfStimuli, double linkRadius, boolean drawLinkLines ) {
@@ -23,6 +24,7 @@ public class Brain extends Canvas{
 		this.linkColor = linkColor;
 		this.linkRadius = linkRadius;
 		this.drawLinkLines = drawLinkLines;
+		this.drawRectangles = false;
 		bufferstrategy = null;
 		
 		Random ran = new Random();
@@ -92,7 +94,11 @@ public class Brain extends Canvas{
 					g2.setColor( neurocell.getColor() );
 				}
 				
-				g2.fillArc( neurocell.getX(), neurocell.getY(), neurocell.getSize(), neurocell.getSize(), 0, 360 );
+				if( !drawRectangles ) {
+					g2.fillArc( neurocell.getX(), neurocell.getY(), neurocell.getSize(), neurocell.getSize(), 0, 360 );
+				} else {
+					g2.fillRect( neurocell.getX(), neurocell.getY(), neurocell.getSize(), neurocell.getSize());
+				}
 				
 			}
 			
@@ -137,6 +143,14 @@ public class Brain extends Canvas{
 
 	public void setLinkRadius(double linkRadius) {
 		this.linkRadius = linkRadius;
+	}
+
+	public boolean isDrawRects() {
+		return drawRectangles;
+	}
+
+	public void setDrawRects(boolean drawRectangles) {
+		this.drawRectangles = drawRectangles;
 	}
 }
 

@@ -116,7 +116,7 @@ public class ConfigWindow extends JFrame {
 				brain.setDrawLinkLines(chckbxDrawLinkLines.isSelected());
 			}
 		});
-		chckbxDrawLinkLines.setBounds(10, 83, 343, 23);
+		chckbxDrawLinkLines.setBounds(10, 83, 110, 23);
 		contentPane.add(chckbxDrawLinkLines);
 		
 		JLabel lblAddNeurocells = new JLabel("Add Neurocells:");
@@ -140,12 +140,12 @@ public class ConfigWindow extends JFrame {
 		contentPane.add(btnAdd);
 		
 		JLabel lblEruptionProbability = new JLabel("Eruption Probability:");
-		lblEruptionProbability.setBounds(10, 116, 99, 14);
+		lblEruptionProbability.setBounds(10, 146, 99, 14);
 		contentPane.add(lblEruptionProbability);
 		
 		eruptionPropabilitySpinner = new JSpinner();
-		eruptionPropabilitySpinner.setModel(new SpinnerNumberModel(new Float(0.02), new Float(0), new Float(2), new Float(1)));
-		eruptionPropabilitySpinner.setBounds(119, 117, 147, 14);
+		eruptionPropabilitySpinner.setModel(new SpinnerNumberModel(new Float(0.002), new Float(0), new Float(2), new Float(1)));
+		eruptionPropabilitySpinner.setBounds(119, 147, 147, 14);
 		contentPane.add(eruptionPropabilitySpinner);
 		
 		JButton button = new JButton("set");
@@ -156,16 +156,16 @@ public class ConfigWindow extends JFrame {
 				}
 			}
 		});
-		button.setBounds(276, 116, 80, 15);
+		button.setBounds(276, 146, 80, 15);
 		contentPane.add(button);
 		
 		JLabel lblThreshold = new JLabel("Threshold:");
-		lblThreshold.setBounds(10, 167, 99, 14);
+		lblThreshold.setBounds(10, 197, 99, 14);
 		contentPane.add(lblThreshold);
 		
 		thresholdSpinner = new JSpinner();
 		thresholdSpinner.setModel(new SpinnerNumberModel(new Float(0.2), null, null, new Float(1)));
-		thresholdSpinner.setBounds(119, 168, 147, 14);
+		thresholdSpinner.setBounds(119, 198, 147, 14);
 		contentPane.add(thresholdSpinner);
 		
 		JButton button_1 = new JButton("set");
@@ -176,7 +176,7 @@ public class ConfigWindow extends JFrame {
 				}
 			}
 		});
-		button_1.setBounds(276, 167, 80, 15);
+		button_1.setBounds(276, 197, 80, 15);
 		contentPane.add(button_1);
 		
 		JButton button_2 = new JButton("set");
@@ -197,16 +197,16 @@ public class ConfigWindow extends JFrame {
 				}
 			}
 		});
-		button_2.setBounds(276, 218, 80, 15);
+		button_2.setBounds(276, 248, 80, 15);
 		contentPane.add(button_2);
 		
 		linkDistanceSpinner = new JSpinner();
 		linkDistanceSpinner.setModel(new SpinnerNumberModel(new Double(200), new Double(0), null, new Double(1)));
-		linkDistanceSpinner.setBounds(119, 219, 147, 14);
+		linkDistanceSpinner.setBounds(119, 249, 147, 14);
 		contentPane.add(linkDistanceSpinner);
 		
 		JLabel lblLinkDistance = new JLabel("Link Distance:");
-		lblLinkDistance.setBounds(10, 218, 99, 14);
+		lblLinkDistance.setBounds(10, 248, 99, 14);
 		contentPane.add(lblLinkDistance);
 		
 		JButton button_3 = new JButton("set");
@@ -217,24 +217,25 @@ public class ConfigWindow extends JFrame {
 				}
 			}
 		});
-		button_3.setBounds(276, 192, 80, 15);
+		button_3.setBounds(276, 222, 80, 15);
 		contentPane.add(button_3);
 		
 		cooldownSpinner = new JSpinner();
-		cooldownSpinner.setBounds(119, 193, 147, 14);
+		cooldownSpinner.setModel(new SpinnerNumberModel(new Integer(5), new Integer(0), null, new Integer(1)));
+		cooldownSpinner.setBounds(119, 223, 147, 14);
 		contentPane.add(cooldownSpinner);
 		
 		JLabel label = new JLabel("Cooldown:");
-		label.setBounds(10, 192, 99, 14);
+		label.setBounds(10, 222, 99, 14);
 		contentPane.add(label);
 		
 		JLabel label_1 = new JLabel("Neurocell Size:");
-		label_1.setBounds(10, 244, 99, 14);
+		label_1.setBounds(10, 274, 99, 14);
 		contentPane.add(label_1);
 		
 		neurocellsizeSpinner = new JSpinner();
 		neurocellsizeSpinner.setModel(new SpinnerNumberModel(10, 1, 100, 1));
-		neurocellsizeSpinner.setBounds(119, 245, 147, 14);
+		neurocellsizeSpinner.setBounds(119, 275, 147, 14);
 		contentPane.add(neurocellsizeSpinner);
 		
 		JButton button_4 = new JButton("set");
@@ -245,12 +246,12 @@ public class ConfigWindow extends JFrame {
 				}
 			}
 		});
-		button_4.setBounds(276, 244, 80, 15);
+		button_4.setBounds(276, 274, 80, 15);
 		contentPane.add(button_4);
 		
 		eruptionOutputSpinner = new JSpinner();
 		eruptionOutputSpinner.setModel(new SpinnerNumberModel(new Float(0.05f), null, null, new Float(1)));
-		eruptionOutputSpinner.setBounds(119, 142, 147, 14);
+		eruptionOutputSpinner.setBounds(119, 172, 147, 14);
 		contentPane.add(eruptionOutputSpinner);
 		
 		JButton button_5 = new JButton("set");
@@ -261,11 +262,11 @@ public class ConfigWindow extends JFrame {
 				}
 			}
 		});
-		button_5.setBounds(276, 141, 80, 15);
+		button_5.setBounds(276, 171, 80, 15);
 		contentPane.add(button_5);
 		
 		JLabel label_2 = new JLabel("Eruption Output:");
-		label_2.setBounds(10, 141, 99, 14);
+		label_2.setBounds(10, 171, 99, 14);
 		contentPane.add(label_2);
 		
 		JButton button_6 = new JButton("clear");
@@ -280,5 +281,66 @@ public class ConfigWindow extends JFrame {
 		JLabel label_3 = new JLabel("Timer Interval:");
 		label_3.setBounds(10, 36, 80, 14);
 		contentPane.add(label_3);
+		
+		JButton button_7 = new JButton("randomize positions");
+		button_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				for(int i = 0; i < brain.getNeurocells().size(); i++)
+				{
+					brain.getNeurocells().get(i).setX((int)(ran.nextFloat() * brain.getWidth()));
+					brain.getNeurocells().get(i).setY((int)(ran.nextFloat() * brain.getHeight()));
+				}
+			}
+		});
+		button_7.setBounds(119, 83, 147, 15);
+		contentPane.add(button_7);
+		
+		JButton button_8 = new JButton("recalculate links");
+		button_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// destroy links
+				ArrayList<NeuroCell> tmpList = new ArrayList<NeuroCell>();
+				for(int i = 0; i < brain.getNeurocells().size(); i++) {
+					brain.getNeurocells().get(i).getInputs().clear();
+					tmpList.add(brain.getNeurocells().get(i));
+				}
+				
+				brain.setLinkRadius((double)linkDistanceSpinner.getValue());
+				brain.getNeurocells().clear();
+				
+				for(int i = 0; i < tmpList.size(); i++) {
+					brain.addNeurocell(tmpList.get(i));
+				}
+			}
+		});
+		button_8.setBounds(276, 83, 147, 15);
+		contentPane.add(button_8);
+		
+		JButton button_9 = new JButton("square positions");
+		button_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int sqrt = (int)Math.sqrt( brain.getNeurocells().size() );
+				int counter = 0;
+				for(int i = 0; i < sqrt; i++) {
+					for(int k = 0; k < sqrt; k++) {
+						brain.getNeurocells().get(counter).setX(i * brain.getWidth() / sqrt);
+						brain.getNeurocells().get(counter).setY(k * brain.getHeight() / sqrt);
+						counter++;
+					}
+				}
+			}
+		});
+		button_9.setBounds(119, 113, 147, 15);
+		contentPane.add(button_9);
+		
+		JCheckBox checkBox = new JCheckBox("draw rectangles");
+		checkBox.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				brain.setDrawRects(checkBox.isSelected());
+			}
+		});
+		checkBox.setBounds(10, 109, 110, 23);
+		contentPane.add(checkBox);
 	}
 }
