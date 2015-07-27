@@ -20,7 +20,9 @@ public class NeuroCell {
 	private Color color;
 	private Color colorTriggered;
 
-	public NeuroCell(float threshold, int cooldown, float eruptionPropability, float eruptionOutput, int x, int y, int size, Color color, Color colorTriggered) {
+	public NeuroCell(float threshold, int cooldown, float eruptionPropability,
+			float eruptionOutput, int x, int y, int size, Color color,
+			Color colorTriggered) {
 		super();
 		inputs = new ArrayList<NeuroCell>();
 		this.threshold = threshold;
@@ -44,8 +46,8 @@ public class NeuroCell {
 			output = futureOutput;
 			outputTriggered = false;
 			cooldownCounter = 1;
-		} else if( cooldownCounter != 0) {
-			if(cooldownCounter == cooldown) {
+		} else if (cooldownCounter != 0) {
+			if (cooldownCounter == cooldown) {
 				cooldownCounter = 0;
 			} else {
 				cooldownCounter++;
@@ -54,19 +56,19 @@ public class NeuroCell {
 			output = 0.0f;
 		}
 	}
-	
+
 	public void update() {
 		float sum = 0;
 
 		for (int i = 0; i < inputs.size(); i++) {
 			sum += inputs.get(i).output;
 		}
-		
-		if (sum >= threshold){
+
+		if (sum >= threshold) {
 			sum /= (float) inputs.size();
 			futureOutput = sum;
 			outputTriggered = true;
-		} else if( ran.nextFloat() <= eruptionPropability ) {
+		} else if (ran.nextFloat() <= eruptionPropability) {
 			futureOutput = eruptionOutput;
 			outputTriggered = true;
 		}

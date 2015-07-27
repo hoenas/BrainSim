@@ -158,5 +158,76 @@ public class Brain extends Canvas{
 	public void setDrawRects(boolean drawRectangles) {
 		this.drawRectangles = drawRectangles;
 	}
+	
+	public void createRectBrain(int neuroCellCountX, int neuroCellCountY, float threshold, int cooldown, float eruptionPropability, Color color, Color colorTriggered, float eruptionOutput, int size) {
+		// delete old neurocells
+		neurocells.clear();
+		
+		// create neurocells
+		for(int y = 0; y < neuroCellCountY; y++) {
+			for( int x = 0; x < neuroCellCountX; x++) {
+				neurocells.add(new NeuroCell(threshold, cooldown, eruptionPropability, eruptionOutput, x * size , y * size, size, color, colorTriggered));
+			}
+		}
+		
+		// link cell
+		int neuroCellIndex = 0;
+		for( int y = 0; y < neuroCellCountY; y++) {
+			for(int x = 0; x < neuroCellCountX; x++) {
+				// define index
+				int index = 0;
+				
+				// do not calculate upper neighbors if we are in the top row
+				if( y != 0) {
+					// upper left neighbour:
+					if( x != 0 ) {
+						index = neuroCellIndex - neuroCellCountX - 1;
+						neurocells.get(neuroCellIndex).addInput( neurocells.get(index) );
+					} else // upper right neighbour:
+						if( x != neuroCellCountX - 1) {
+							index = neuroCellIndex - neuroCellCountX + 1;
+							neurocells.get(neuroCellIndex).addInput( neurocells.get(index) );
+						}
+					
+					// upper neighbour:
+					index = neuroCellIndex - neuroCellCountX;
+					neurocells.get(neuroCellIndex).addInput( neurocells.get(index) );
+	
+				}
+				// do not calculate lower neighbours if we are in bottom row
+				if( y != neuroCellCountY - 1) {
+					// lower left neighbour:
+					if( x != 0) {
+						index = neuroCellIndex + neuroCellCountX - 1;
+						neurocells.get(neuroCellIndex).addInput( neurocells.get(index) );
+					}
+					
+					// lower right neighbour
+					if( x != neuroCellCountX - 1 ) {
+						index = neuroCellIndex + neuroCellCountX + 1;
+						neurocells.get(neuroCellIndex).addInput( neurocells.get(index) );
+					}
+					
+					// lower neighbour:
+					index = neuroCellIndex + neuroCellCountX;
+					neurocells.get(neuroCellIndex).addInput( neurocells.get(index) );
+				}
+				
+				// check left and right bounds
+				if( x != 0) {
+					// left neighbour:
+					index = neuroCellIndex - 1;
+					neurocells.get(neuroCellIndex).addInput( neurocells.get(index) );
+				}
+				if (x != neuroCellCountX - 1) {
+					// right neighbour:
+					index = neuroCellIndex + 1;
+					neurocells.get(neuroCellIndex).addInput( neurocells.get(index) );
+				}
+				// increment neurocell index
+				neuroCellIndex++;
+			}
+		}
+	}
 }
 
