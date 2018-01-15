@@ -20,15 +20,17 @@ public class Brain extends Canvas{
 	private double linkRadius;
 	private boolean drawLinkLines;
 	private boolean drawRectangles;
+	private boolean monocrome;
 	private BufferStrategy bufferstrategy;
 	
 	//public Brain( Color backgroundColor, Color linkColor, int numberOfNeurocells, int numberOfStimuli, double linkRadius, boolean drawLinkLines ) {
-	public Brain( Color backgroundColor, Color linkColor, double linkRadius, boolean drawLinkLines ) {
+	public Brain( Color backgroundColor, Color linkColor, double linkRadius, boolean drawLinkLines, boolean monocrome ) {
 		this.backgroundColor = backgroundColor;
 		this.linkColor = linkColor;
 		this.linkRadius = linkRadius;
 		this.drawLinkLines = drawLinkLines;
 		this.drawRectangles = true;
+		this.monocrome = monocrome;
 		bufferstrategy = null;
 		
 		Random ran = new Random();
@@ -166,7 +168,7 @@ public class Brain extends Canvas{
 		// create neurocells
 		for(int y = 0; y < neuroCellCountY; y++) {
 			for( int x = 0; x < neuroCellCountX; x++) {
-				neurocells.add(new NeuroCell(threshold, cooldown, eruptionPropability, eruptionOutput, x * size , y * size, size, color, colorTriggered));
+				neurocells.add(new NeuroCell(threshold, cooldown, eruptionPropability, eruptionOutput, x * size , y * size, size, color, colorTriggered, monocrome));
 			}
 		}
 		
@@ -183,11 +185,13 @@ public class Brain extends Canvas{
 					if( x != 0 ) {
 						index = neuroCellIndex - neuroCellCountX - 1;
 						neurocells.get(neuroCellIndex).addInput( neurocells.get(index) );
-					} else // upper right neighbour:
-						if( x != neuroCellCountX - 1) {
-							index = neuroCellIndex - neuroCellCountX + 1;
-							neurocells.get(neuroCellIndex).addInput( neurocells.get(index) );
-						}
+					}
+					
+					// upper right neighbour:
+					if( x != neuroCellCountX - 1) {
+						index = neuroCellIndex - neuroCellCountX + 1;
+						neurocells.get(neuroCellIndex).addInput( neurocells.get(index) );
+					}
 					
 					// upper neighbour:
 					index = neuroCellIndex - neuroCellCountX;

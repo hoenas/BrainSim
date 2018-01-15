@@ -48,7 +48,7 @@ public class Main extends JFrame {
 		
 		
 		
-		Brain brain = new Brain(Color.white, Color.cyan, 200, false);
+		Brain brain = new Brain(Color.white, Color.cyan, 200, false, false);
 		contentPane.add(brain, BorderLayout.CENTER);
 		
 		// Timerkonfiguration

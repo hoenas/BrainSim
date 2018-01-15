@@ -37,6 +37,7 @@ public class ConfigWindow extends JFrame {
 	private JSpinner cooldownSpinner;
 	private JSpinner linkDistanceSpinner;
 	private JSpinner neurocellsizeSpinner;
+	private JCheckBox checkBox_monocrome;
 
 	private Brain brain;
 	private Timer simTimer;
@@ -144,7 +145,7 @@ public class ConfigWindow extends JFrame {
 									(int) (ran.nextFloat() * brain.getWidth()),
 									(int) (ran.nextFloat() * brain.getHeight()),
 									(int) neurocellsizeSpinner.getValue(),
-									Color.gray, Color.magenta));
+									Color.gray, Color.magenta, checkBox_monocrome.isSelected()));
 				}
 			}
 		});
@@ -201,7 +202,10 @@ public class ConfigWindow extends JFrame {
 		JButton button_2 = new JButton("set");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				LinkThread lThread = new LinkThread(brain, (double)linkDistanceSpinner.getValue());
+				lThread.run();
 				// destroy links
+				/*
 				ArrayList<NeuroCell> tmpList = new ArrayList<NeuroCell>();
 				for (int i = 0; i < brain.getNeurocells().size(); i++) {
 					brain.getNeurocells().get(i).getInputs().clear();
@@ -214,6 +218,7 @@ public class ConfigWindow extends JFrame {
 				for (int i = 0; i < tmpList.size(); i++) {
 					brain.addNeurocell(tmpList.get(i));
 				}
+				*/
 			}
 		});
 		button_2.setBounds(276, 291, 80, 15);
@@ -273,8 +278,7 @@ public class ConfigWindow extends JFrame {
 		contentPane.add(button_4);
 
 		eruptionOutputSpinner = new JSpinner();
-		eruptionOutputSpinner.setModel(new SpinnerNumberModel(new Float(1.0f),
-				null, null, new Float(1)));
+		eruptionOutputSpinner.setModel(new SpinnerNumberModel(new Float(0), null, null, new Float(1)));
 		eruptionOutputSpinner.setBounds(119, 215, 147, 14);
 		contentPane.add(eruptionOutputSpinner);
 
@@ -419,5 +423,9 @@ public class ConfigWindow extends JFrame {
 		});
 		button_10.setBounds(276, 83, 80, 15);
 		contentPane.add(button_10);
+		
+		checkBox_monocrome = new JCheckBox("monocrome");
+		checkBox_monocrome.setBounds(10, 100, 110, 23);
+		contentPane.add(checkBox_monocrome);
 	}
 }
